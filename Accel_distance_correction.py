@@ -6,7 +6,6 @@ import numpy as np
 def csv_file(file):
     with open(file, 'r') as csv_file:
         csv_reader = reader(csv_file)
-        data_header = next(csv_reader) #一行目を出力
         data = list(csv_reader)
     return data
   
@@ -72,13 +71,13 @@ def WalkStop(data, speed, time, var_num):
         if i in var_num:
             cor_distance_list.append(0)
         else:
-            cor_distance_list.append((((speed[i] + speed[i+1]) * time[i]) / 2)*5*1.91302504811121) #5m:70
+            cor_distance_list.append(((speed[i] + speed[i+1]) * time[i]) / 2)
         cor_distance_sum += cor_distance_list[i]
         cor_distance_sum_list.append(cor_distance_sum)
     return cor_distance_sum_list
 
 
-file = "../20230109/accl30m(1).csv"
+file = "test.csv"
 data = csv_file(file)
 time, elapsed_time = time(data)
 z, abs_z = accl_z(data)
